@@ -5,12 +5,12 @@
 # These entries are shared between all the Immich components
 
 env:
-  REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-  DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
-  DB_USERNAME: "{{ .Values.postgresql.global.postgresql.auth.username }}"
-  DB_DATABASE_NAME: "{{ .Values.postgresql.global.postgresql.auth.database }}"
+  REDIS_HOSTNAME: '192.168.1.7:30379'
+  DB_HOSTNAME: "192.168.1.7:30432"
+  DB_USERNAME: "admin"
+  DB_DATABASE_NAME: "immich"
   # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
-  DB_PASSWORD: "{{ .Values.postgresql.global.postgresql.auth.password }}"
+  DB_PASSWORD: "Initial0"
   IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
 image:
@@ -47,9 +47,9 @@ postgresql:
   global:
     postgresql:
       auth:
-        username: immich
+        username: admin
         database: immich
-        password: immich
+        password: Initial0
   primary:
     initdb:
       scripts:
